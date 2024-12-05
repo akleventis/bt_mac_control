@@ -1,6 +1,22 @@
 import { View, StyleSheet, Text, Image, Button, Alert } from 'react-native';
 
 export default function HomeScreen() {
+  const sendPostRequest = async () => {
+    try {
+      const response = await fetch('http://10.0.0.144:8000', {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        return
+      } else {
+        Alert.alert('Error', `Failed to send request: ${response.status}`);
+      }
+    } catch (error) {
+      Alert.alert('Error', `Failed to send request: ${(error as Error) .message}`);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.h_text}>Hi Tanner</Text>
@@ -10,7 +26,7 @@ export default function HomeScreen() {
       />
       <Button
         title="click me"
-        onPress={() => Alert.alert('clicked')} />
+        onPress={sendPostRequest} />
     </View>
   );
 }
