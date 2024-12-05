@@ -3,7 +3,8 @@ import { View, StyleSheet, Text, Image, Button, Alert } from 'react-native';
 export default function HomeScreen() {
   const sendPostRequest = async () => {
     try {
-      const response = await fetch('http://10.0.0.144:8000', {
+      // udpate to programatically get local ip address
+      const response = await fetch('http://10.2.126.101:8000', {
         method: 'POST',
       });
 
