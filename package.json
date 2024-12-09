@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "expo": "~52.0.15",
+    "expo-router": "^4.0.11",
     "react": "18.3.1",
     "react-native": "0.76.3",
-    "expo-router": "~4.0.11",
-    "typescript": "^5.3.3",
-    "@types/react": "~18.3.12"
+    "react-native-web": "^0.19.13",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "jest": "^29.2.1",

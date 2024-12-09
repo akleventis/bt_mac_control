@@ -15,6 +15,7 @@
     "web": {
       "bundler": "metro"
     },
+    "newArchEnabled": "true",
     "assetBundlePatterns": ["**/*"]
   }
 }

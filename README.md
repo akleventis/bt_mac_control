@@ -28,17 +28,7 @@ You can start developing by editing the files inside the **app** directory. This
 
 1. Prerequisites
    - Ensure you have Python 3.9 or later installed on your system.
-   - Install pyenv to manage Python versions and virtual environments
-
-1. Set up a virtual environment using pyenv
-   - `pyenv virtualenv 3.9.6 bt_mac_control_env`
-   - `pyenv local bt_mac_control_env`
-
-1. Install required dependencies
-   - `pip install -r requirements.txt`
-
-1. Run listener.py
-   - `python python/listener.py`
+   - Spin up server: `python python/discover.py`
 
 ## Enable keyboard accessibility 
 1.	Open System Settings > Privacy & Security > Accessibility.
@@ -58,7 +48,6 @@ hs.hotkey.bind({}, "F8", function()
     hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
 end)
-
 ```
 > remaps the F8 key to trigger the Play/Pause media action
 
