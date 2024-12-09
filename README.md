@@ -30,6 +30,10 @@ You can start developing by editing the files inside the **app** directory. This
    - Ensure you have Python 3.9 or later installed on your system.
    - Spin up server: `python python/discover.py`
 
+1. Set up a virtual environment using pyenv (for keyboard accessibility)
+   - `pyenv virtualenv 3.9.6 bt_mac_control_env`
+   - `pyenv local bt_mac_control_env`
+
 ## Enable keyboard accessibility 
 1.	Open System Settings > Privacy & Security > Accessibility.
 1. Enable hidden files in Finder:

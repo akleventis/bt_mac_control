@@ -6,7 +6,6 @@ import json
 
 class DiscoveryHandler(http.server.BaseHTTPRequestHandler):
     def send_json_response(self, status_code, data):
-        """Utility function to send a JSON response with CORS headers."""
         self.send_response(status_code)
         self.send_header('Content-type', 'application/json')
         self.send_header('Access-Control-Allow-Origin', '*')  # CORS Header
@@ -33,6 +32,14 @@ class DiscoveryHandler(http.server.BaseHTTPRequestHandler):
         if self.path == '/right_arrow':
             self.simulate_keypress(124)
             self.send_json_response(200, {'status': 'right arrow press'})
+            return
+        if self.path == '/brightness_up':
+            self.simulate_keypress(144)
+            self.send_json_response(200, {'status': 'brightness up press'})
+            return
+        if self.path == '/brightness_down':
+            self.simulate_keypress(145)
+            self.send_json_response(200, {'status': 'brightness down press'})
             return
         else:
             self.send_json_response(404, {'error': 'Not Found'})
