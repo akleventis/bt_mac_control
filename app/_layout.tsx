@@ -1,5 +1,5 @@
 import HomeScreen from './index';
-import { View, StyleSheet, Text, Image, Button, Alert } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default function RootLayout() {
 
