@@ -24,6 +24,8 @@ Resources:
    - > pyenv virtualenv 3.9.6 bt_mac_control_env
    - > pyenv local bt_mac_control_env
 
+TODO: Pipfile.lock
+
 1.  Spin up server > `python python/server.py`
 ## Enable keyboard accessibility 
 1.	Open System Settings > Privacy & Security > Accessibility.
