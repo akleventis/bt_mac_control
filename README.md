@@ -67,6 +67,9 @@ end)
 `python server.py`|starts python server
 
 > Note: You may need to update [start_app.sh](start_app.sh) permissions to make executable: `chmod +x start_app.sh`
+
+Bash alias for ease of running in any working dir `alias mac_remote='./path/to/bt_mac_control/start_app.sh';`
+
 ---
 
 Resources:

@@ -15,16 +15,17 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "~52.0.15",
+    "expo": "~52.0.17",
     "expo-router": "^4.0.11",
     "react": "18.3.1",
-    "react-native": "0.76.3",
+    "react-native": "0.76.5",
     "react-native-web": "^0.19.13",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
     "jest": "^29.2.1",
-    "jest-expo": "~52.0.2"
+    "jest-expo": "~52.0.2",
+    "@types/react": "~18.3.12"
   },
   "private": true
 }
