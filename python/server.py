@@ -1,24 +1,37 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
+from flask_cors import CORS, cross_origin
 from handlers import KEY_MAPPING, OS_KEY_MAPPING, handleGetIP, handleKeyPress, handleCustomOSAction
+import logging 
 
 app = Flask(__name__)
+cors = CORS(app)
+
+logging.basicConfig(
+    level=logging.INFO
+)
+logger = app.logger
 
 @app.route('/discover_ping')
+@cross_origin()
 def get_ip():
-    response = handleGetIP()
-    return jsonify(response), 200
+    data = handleGetIP()
+    response = make_response(jsonify(data), 200)
+    return response
 
 @app.route('/os_action')
+@cross_origin()
 def key_action():
     action = request.args.get('action')
 
     if action in KEY_MAPPING:
-        response = handleKeyPress(action)
-        return jsonify(response), 200
+        data = handleKeyPress(action)
+        response = make_response(jsonify(data), 200)
+        return response
     
     if action in OS_KEY_MAPPING:
-        response = handleCustomOSAction(action)
-        return jsonify(response), 200
+        data = handleCustomOSAction(action)
+        response = make_response(jsonify(data), 200)
+        return response
     
     return jsonify({'error': 'Invalid or missing action'}), 400
 
@@ -27,4 +40,4 @@ def not_found():
     return jsonify({'error': 'Not Found'}), 404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=False)
+    app.run(host='0.0.0.0', port=5001, debug=True)

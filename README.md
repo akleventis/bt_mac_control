@@ -42,15 +42,27 @@ Current keypress actions
    - `pip install -r bt_mac_control/python/requirements.txt`
    
 1. Download and configure Hammerspoon
-- The F8 key is typically mapped to the Play/Pause command, but using AppleScript to control playback requires targeting specific applications (e.g., iTunes, Spotify).
+- F7, F8, and F9 are used for media control, handling Play/Pause, Previous, and Next actions. However, controlling these keys with AppleScript requires targeting specific applications (e.g., iTunes, Spotify).
 - Hammerspoon allows overriding F8 and other media keys for a universal solution, avoiding application-specific dependencies.
 - See: [hammerspoon.org](https://www.hammerspoon.org/) & [github download link](https://github.com/Hammerspoon/hammerspoon/releases/tag/1.0.0)
 - After installation, open the Configuration by clicking Open Config in the Hammerspoon menu. Copy this into the init.lua file (example in directory)
 ```lua
--- Simulate Media Play/Pause Key
+-- Simulate Media Previous Track Key (F7)
+hs.hotkey.bind({}, "F7", function()
+    hs.eventtap.event.newSystemKeyEvent("PREVIOUS", true):post()
+    hs.eventtap.event.newSystemKeyEvent("PREVIOUS", false):post()
+end)
+
+-- Simulate Media Play/Pause Key (F8)
 hs.hotkey.bind({}, "F8", function()
     hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
+end)
+
+-- Simulate Media Next Track Key (F9)
+hs.hotkey.bind({}, "F9", function()
+    hs.eventtap.event.newSystemKeyEvent("NEXT", true):post()
+    hs.eventtap.event.newSystemKeyEvent("NEXT", false):post()
 end)
 ```
 > remaps the F8 key to trigger the universal Play/Pause media action

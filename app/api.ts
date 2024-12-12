@@ -31,6 +31,7 @@ export const sendRequest = async (method: HttpMethod, endpoint: ValidEndpoint, i
 // scanNetwork scans the local network for devices by sending /discover ping requests to potential IPs rangin from 10.0.0.1 -> 10.0.0.255
 // if a valid response is received, it sets the discovered IP using the provided setServerIP state updater function in the HomeScreen component)
 export const scanNetwork = async (setServerIP: React.Dispatch<React.SetStateAction<string>>) => {
+  console.log("..scanning network")
   // array of all possible ip's in subnet 0 - 255
   const ips = Array.from({ length: 255 }, (_, i) => `${subnet}.${i + 1}`);   // ["10.0.0.1", "10.0.0.2", ..., "10.0.0.255"]
 
@@ -85,13 +86,26 @@ export const triggerKeyPress = async (serverIP: string, key_action: string) => {
     if (!response.ok) {
       alert(`Failed to send request: ${response.status}`);
     }
+    return response
   } catch (error) {
     alert(`Failed to send request: ${(error as Error).message}`);
   }
 };
 
+// adjustVolume triggers key press and set's the vollume state to value received from server
+export const adjustVolume = async(serverIP: string, key_action: string, setVolume: React.Dispatch<React.SetStateAction<string>>) => {
+  const res = await triggerKeyPress(serverIP, key_action)
+  if (res && res.ok) {
+    const data = await res.json();
+    if (data.volume !== "") {
+      setVolume(data.volume);
+    }
+  } else {
+    console.log("failed to adjust volume");
+  }
+}
+
 // reScan scans the network again for /discovery_ping response in case of new network location
 export const reScan = (i: number, incrRescan: React.Dispatch<React.SetStateAction<number>>) => {
   incrRescan(i + 1)
-  console.log("...rescanning")
 }

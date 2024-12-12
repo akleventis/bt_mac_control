@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
-import { scanNetwork, triggerKeyPress, reScan } from "./api";
+import { scanNetwork, triggerKeyPress, adjustVolume, reScan } from "./api";
 
 // manually add ip in the overrideIP variable below to skip network scan
 const overrideIP = ''
 
 export default function HomeScreen() {
-  const [serverIP, setServerIP] = useState('no ip set');
+  const [serverIP, setServerIP] = useState('nil');
+  const [volume, setVolume] = useState("")
   const [i, incrRescan] = useState(0)
 
   // allow override on known network
@@ -18,6 +19,13 @@ export default function HomeScreen() {
     }
   }, [overrideIP, i]);
 
+  // fetch current volume from server
+  useEffect(() => {
+    if (serverIP !== 'nil') {
+      adjustVolume(serverIP, "current", setVolume);
+    }
+  }, [serverIP]); 
+
   return (
     <View style={styles.container}>
       <Text style={styles.h_text}>IP: {serverIP}</Text>
@@ -25,7 +33,13 @@ export default function HomeScreen() {
         title="play/pause"
         onPress={() => triggerKeyPress(serverIP, "play_pause")} />
       <Button
-        title="left arrow key"
+        title="previous track"
+        onPress={() => triggerKeyPress(serverIP, "previous_track")} />
+      <Button
+        title="next track"
+        onPress={() => triggerKeyPress(serverIP, "next_track")} />
+      <Button
+        title="left arror key"
         onPress={() => triggerKeyPress(serverIP, "left_arrow")} />
       <Button
         title="right arrow key"
@@ -38,13 +52,14 @@ export default function HomeScreen() {
         onPress={() => triggerKeyPress(serverIP, "brightness_down")} />
       <Button
         title="volume up"
-        onPress={() => triggerKeyPress(serverIP, "volume_up")} />
+        onPress={() => adjustVolume(serverIP, "volume_up", setVolume)} />
       <Button
         title="volume down"
-        onPress={() => triggerKeyPress(serverIP, "volume_down")} />
+        onPress={() => adjustVolume(serverIP, "volume_down", setVolume)} />
       <Button
         title="rescan"
         onPress={(() => reScan(i, incrRescan))} />
+      <Text>volume: {volume}</Text>
     </View>
   );
 }

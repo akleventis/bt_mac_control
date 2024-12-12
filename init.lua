@@ -1,5 +1,17 @@
--- Simulate Media Play/Pause Key
+-- Simulate Media Previous Track Key (F7)
+hs.hotkey.bind({}, "F7", function()
+    hs.eventtap.event.newSystemKeyEvent("PREVIOUS", true):post()
+    hs.eventtap.event.newSystemKeyEvent("PREVIOUS", false):post()
+end)
+
+-- Simulate Media Play/Pause Key (F8)
 hs.hotkey.bind({}, "F8", function()
     hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
+end)
+
+-- Simulate Media Next Track Key (F9)
+hs.hotkey.bind({}, "F9", function()
+    hs.eventtap.event.newSystemKeyEvent("NEXT", true):post()
+    hs.eventtap.event.newSystemKeyEvent("NEXT", false):post()
 end)
