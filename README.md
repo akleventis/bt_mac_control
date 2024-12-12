@@ -42,7 +42,8 @@ Current keypress actions
    - `pip install -r bt_mac_control/python/requirements.txt`
    
 1. Download and configure Hammerspoon
-- Hammerspoon allows us to override special media keys like Play/Pause, which do not directly correspond to standard key codes
+- The F8 key is typically mapped to the Play/Pause command, but using AppleScript to control playback requires targeting specific applications (e.g., iTunes, Spotify).
+- Hammerspoon allows overriding F8 and other media keys for a universal solution, avoiding application-specific dependencies.
 - See: [hammerspoon.org](https://www.hammerspoon.org/) & [github download link](https://github.com/Hammerspoon/hammerspoon/releases/tag/1.0.0)
 - After installation, open the Configuration by clicking Open Config in the Hammerspoon menu. Copy this into the init.lua file (example in directory)
 ```lua
@@ -52,7 +53,7 @@ hs.hotkey.bind({}, "F8", function()
     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
 end)
 ```
-> remaps the F8 key to trigger the Play/Pause & Sound Up/Down media action
+> remaps the F8 key to trigger the universal Play/Pause media action
 
 8. Update [start_app.sh](start_app.sh) permissions
    - bash script responsible for spinning up the expo & python servers
