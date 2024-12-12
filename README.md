@@ -11,6 +11,7 @@ App that allows your phone to trigger certain keypress / os events on a correspo
 
 Current keypress actions
 - play/pause
+- prev/next track
 - brightness up/down
 - volume up/down
 - left/right arrow key press
