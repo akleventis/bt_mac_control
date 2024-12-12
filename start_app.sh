@@ -1,10 +1,24 @@
 #!/bin/bash
-# make executable: chmod +x start_app.sh
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=`dirname "$SCRIPT"`
 cd $SCRIPTPATH
 
-echo $SCRIPTPATH
 
-python python/server.py & npx expo start
+# ensures both the python server and expo process are terminated cleanly upon Ctrl+C
+trap 'pkill -P $$' SIGINT SIGTERM
+
+# start both processes and store their id's
+python python/server.py & 
+PYTHON_PID=$!
+
+npx expo start &
+EXPO_PID=$!
+
+
+echo $PYTHON_PID
+echo $EXPO_PID
+
+trap "echo 'Stopping processes...'; kill -TERM $PYTHON_PID $EXPO_PID; exit" SIGINT SIGTERM
+
+wait
