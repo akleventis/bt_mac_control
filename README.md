@@ -117,11 +117,13 @@ end)
 
 ## Run app
 - Spin up Hammerspoon daemon
- command | description
----------|------------
-`npx expo start`|spins up expo go
-`python server.py`|starts python server
-`./start_app.sh`|script which spins up expo go & python server
+Here’s the fixed table:
+
+| Command  | Description |
+| -------- | ----------- |
+| npx expo start | npx expo start	Spins up the Expo Go environment. |
+| python server.py | Starts the Python server. |
+| ./start_app.sh | Script that starts both Expo Go and the Python server. |
 
 > Note: You may need to update [start_app.sh](start_app.sh) permissions to make executable: `chmod +x start_app.sh`
 
