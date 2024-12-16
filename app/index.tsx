@@ -119,7 +119,7 @@ export default function HomeScreen() {
         <Pressable
           onPress={() => adjustVolume(serverIP, 'volume_down', setVolume)}
         >
-          <Image style={styles.item} source={ImagesAssets.VolumeUp} />
+          <Image style={styles.item} source={ImagesAssets.VolumeDown} />
         </Pressable>
         <Button
           title='volume down'
