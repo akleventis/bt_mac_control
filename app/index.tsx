@@ -46,90 +46,69 @@ export default function HomeScreen() {
       <View style={styles.container}>
         <Text style={styles.h_text}>IP: {serverIP}</Text>
 
-        <Pressable onPress={setPlayButton}>
-          {isPlaying ? (
-            <Image style={styles.item} source={ImagesAssets.Play} />
-          ) : (
-            <Image style={styles.item} source={ImagesAssets.Pause} />
-          )}
-        </Pressable>
-        <Button
-          title='play/pause'
-          onPress={() => triggerKeyPress(serverIP, 'play_pause')}
-        />
+        <View style={styles.row}>
+          <Pressable onPress={() => triggerKeyPress(serverIP, 'left_arrow')}>
+            <Image style={styles.item} source={ImagesAssets.Left} />
+          </Pressable>
 
-        <Pressable onPress={() => triggerKeyPress(serverIP, 'previous_track')}>
-          <Image style={styles.item} source={ImagesAssets.Previous} />
-        </Pressable>
-        <Button
-          title='previous track'
-          onPress={() => triggerKeyPress(serverIP, 'previous_track')}
-        />
+          <Pressable onPress={() => triggerKeyPress(serverIP, 'right_arrow')}>
+            <Image style={styles.item} source={ImagesAssets.Right} />
+          </Pressable>
+        </View>
 
-        <Pressable onPress={() => triggerKeyPress(serverIP, 'next_track')}>
-          <Image style={styles.item} source={ImagesAssets.Next} />
-        </Pressable>
-        <Button
-          title='next track'
-          onPress={() => triggerKeyPress(serverIP, 'next_track')}
-        />
+        <View style={styles.row}>
+          <Pressable
+            onPress={() => triggerKeyPress(serverIP, 'previous_track')}
+          >
+            <Image style={styles.item} source={ImagesAssets.Previous} />
+          </Pressable>
 
-        <Pressable onPress={() => triggerKeyPress(serverIP, 'left_arrow')}>
-          <Image style={styles.item} source={ImagesAssets.Left} />
-        </Pressable>
-        <Button
-          title='left arror key'
-          onPress={() => triggerKeyPress(serverIP, 'left_arrow')}
-        />
+          <Pressable onPress={setPlayButton}>
+            {isPlaying ? (
+              <Image style={styles.item} source={ImagesAssets.Play} />
+            ) : (
+              <Image style={styles.item} source={ImagesAssets.Pause} />
+            )}
+          </Pressable>
 
-        <Pressable onPress={() => triggerKeyPress(serverIP, 'right_arrow')}>
-          <Image style={styles.item} source={ImagesAssets.Right} />
-        </Pressable>
-        <Button
-          title='right arrow key'
-          onPress={() => triggerKeyPress(serverIP, 'right_arrow')}
-        />
+          <Pressable onPress={() => triggerKeyPress(serverIP, 'next_track')}>
+            <Image style={styles.item} source={ImagesAssets.Next} />
+          </Pressable>
+        </View>
 
-        <Pressable onPress={() => triggerKeyPress(serverIP, 'brightness_up')}>
-          <Image style={styles.item} source={ImagesAssets.BrightnessUp} />
-        </Pressable>
-        <Button
-          title='brightness up'
-          onPress={() => triggerKeyPress(serverIP, 'brightness_up')}
-        />
+        <View style={styles.buttonRow}>
+          <View style={styles.column}>
+            <Pressable
+              onPress={() => triggerKeyPress(serverIP, 'brightness_up')}
+            >
+              <Image style={styles.item} source={ImagesAssets.BrightnessUp} />
+            </Pressable>
 
-        <Pressable onPress={() => triggerKeyPress(serverIP, 'brightness_down')}>
-          <Image style={styles.item} source={ImagesAssets.BrightnessDown} />
-        </Pressable>
-        <Button
-          title='brightness down'
-          onPress={() => triggerKeyPress(serverIP, 'brightness_down')}
-        />
+            <Pressable
+              onPress={() => triggerKeyPress(serverIP, 'brightness_down')}
+            >
+              <Image style={styles.item} source={ImagesAssets.BrightnessDown} />
+            </Pressable>
+          </View>
 
-        <Pressable
-          onPress={() => adjustVolume(serverIP, 'volume_up', setVolume)}
-        >
-          <Image style={styles.item} source={ImagesAssets.VolumeUp} />
-        </Pressable>
-        <Button
-          title='volume up'
-          onPress={() => adjustVolume(serverIP, 'volume_up', setVolume)}
-        />
+          <Pressable onPress={() => reScan(i, incrRescan)}>
+            <Image style={styles.item} source={ImagesAssets.Rescan} />
+          </Pressable>
 
-        <Pressable
-          onPress={() => adjustVolume(serverIP, 'volume_down', setVolume)}
-        >
-          <Image style={styles.item} source={ImagesAssets.VolumeDown} />
-        </Pressable>
-        <Button
-          title='volume down'
-          onPress={() => adjustVolume(serverIP, 'volume_down', setVolume)}
-        />
+          <View style={styles.column}>
+            <Pressable
+              onPress={() => adjustVolume(serverIP, 'volume_up', setVolume)}
+            >
+              <Image style={styles.item} source={ImagesAssets.VolumeUp} />
+            </Pressable>
 
-        <Pressable onPress={() => reScan(i, incrRescan)}>
-          <Image style={styles.item} source={ImagesAssets.Rescan} />
-        </Pressable>
-        <Button title='rescan' onPress={() => reScan(i, incrRescan)} />
+            <Pressable
+              onPress={() => adjustVolume(serverIP, 'volume_down', setVolume)}
+            >
+              <Image style={styles.item} source={ImagesAssets.VolumeDown} />
+            </Pressable>
+          </View>
+        </View>
 
         <Text>volume: {volume}</Text>
       </View>
@@ -161,5 +140,20 @@ const styles = StyleSheet.create({
     padding: 7,
     borderWidth: 3,
     borderRadius: 50,
+  },
+  column: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 80,
+    marginRight: 80,
   },
 });
